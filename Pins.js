@@ -6,6 +6,15 @@ const ZCORP_PINS = {
   // Admin PIN (hidden in the UI, validated but not displayed)
   adminPin: "ZCORP2026",
 
+  // Owner contact
+  owner: { name: "Owner Zeus", phone: "+2349066760078" },
+
+  // Reseller contacts
+  resellers: [
+    { name: "Reseller 1", phone: "+2349134814154" },
+    { name: "Reseller 2", phone: "+2347046884802" }
+  ],
+
   // Pre-generated access keys (20 per plan). Each key is a string; Main.js interprets plan/price/expiry.
   accessKeys: [
     // ONE-TIME (2500, one use)
