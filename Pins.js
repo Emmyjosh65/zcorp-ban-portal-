@@ -6,7 +6,7 @@ const ZCORP_PINS = {
   // Admin PIN (hidden in the UI, validated but not displayed)
   adminPin: "ZCORP2026",
 
-  // Pre-generated access keys (20 per plan). Each key has: key, plan, price (NGN), uses, expiresIn (days or 0 for one-time)
+  // Pre-generated access keys (20 per plan). Each key is a string; Main.js interprets plan/price/expiry.
   accessKeys: [
     // ONE-TIME (2500, one use)
     "ZCORP-OT-1A2B","ZCORP-OT-2C3D","ZCORP-OT-3E4F","ZCORP-OT-4G5H","ZCORP-OT-5J6K",
