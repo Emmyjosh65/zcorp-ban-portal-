@@ -1,71 +1,104 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#080808">
-  <title>ZCORP Ban Portal</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>ZCORP • Ban Portal</title>
   <link rel="stylesheet" href="Style.css">
 </head>
 <body>
-  <div class="ambient"></div>
+  <div class="ambient" aria-hidden="true"></div>
+
   <header class="topbar">
-    <a class="brand" href="#home"><span>⚡</span><b>ZCORP</b><small>BAN PORTAL</small></a>
-    <nav>
+    <a class="brand" href="#home" data-page="home"><span>⚡</span><div class="title"><b>ZCORP</b><small>BAN PORTAL</small></div></a>
+    <nav class="nav">
       <button data-page="home">Home</button>
       <button data-page="access">Access</button>
       <button data-page="checker">Ban Check</button>
       <button data-page="bugs">Bug Center</button>
       <button data-page="appeals">Appeals</button>
     </nav>
-    <button id="adminBtn" class="outline">Admin</button>
+    <div class="right">
+      <button id="adminBtn" class="outline">Admin</button>
+    </div>
   </header>
 
   <main>
+    <!-- Home -->
     <section id="home" class="page active">
       <div class="hero">
         <div class="eyebrow">◆ SECURE MODERATION TERMINAL</div>
         <h1>ZCORP<br><em>BAN PORTAL</em></h1>
-        <p>Premium moderation, access control, ban records, bug reporting and appeals in one futuristic control center.</p>
+        <p class="intro">World-class UI for moderation, access control, ban checks, bug reporting and appeals — now with neon‑gold styling and easy reseller workflow.</p>
         <div class="actions">
-          <button class="gold" data-page="access">LOGIN WITH ACCESS KEY</button>
-          <button data-page="checker">CHECK BAN STATUS</button>
-          <button data-page="bugs">REPORT BUG</button>
+          <button id="openPay" class="cta gold">Get Access • Pay</button>
+          <button data-page="access" class="cta outline">Verify Access Key</button>
+          <button data-page="checker" class="cta">Check Ban</button>
         </div>
       </div>
-      <div class="cards">
-        <article><span>01</span><h3>ACCESS CONTROL</h3><p>Verify ZCORP access keys with secure local validation.</p></article>
-        <article><span>02</span><h3>MODERATION</h3><p>Review ban records and moderation history from the dashboard.</p></article>
-        <article><span>03</span><h3>BUG CENTER</h3><p>Create trackable bug tickets and monitor their status.</p></article>
+
+      <div class="features">
+        <article><span>01</span><h3>ACCESS CONTROL</h3><p>Pre-generated keys, quick activation and expiry timers for every plan.</p></article>
+        <article><span>02</span><h3>MODERATION</h3><p>Ban checks and unban flows with receipt-driven activation.</p></article>
+        <article><span>03</span><h3>BUG CENTER</h3><p>Report and track bugs locally in the demo dashboard.</p></article>
       </div>
     </section>
 
+    <!-- Access -->
     <section id="access" class="page">
       <div class="panel narrow">
         <div class="eyebrow">◆ ACCESS TERMINAL</div>
         <h2>Verify your <em>access key</em></h2>
-        <p>Enter the key supplied by ZCORP after payment verification.</p>
-        <label>ACCESS KEY<input id="keyInput" autocomplete="off" placeholder="ZCORP-XXXX-XXXX-XXXX"></label>
-        <button id="loginBtn" class="gold wide">VERIFY & ENTER</button>
+        <p>Enter the key supplied after payment verification.</p>
+        <label class="field">ACCESS KEY
+          <input id="keyInput" autocomplete="off" placeholder="ZCORP-XXXX-XXXX-XXXX" />
+        </label>
+        <div class="row">
+          <button id="loginBtn" class="gold wide">VERIFY & ENTER</button>
+          <button id="showPayFromAccess" class="outline">Need access? Pay</button>
+        </div>
         <div id="loginResult" class="result"></div>
+
         <hr>
-        <h3>Need access?</h3>
-        <p>Pay via OPay, then send your receipt to the ZCORP owner on WhatsApp.</p>
-        <div class="pay"><b>OPay</b><strong>9066760078</strong><button id="copyPay">COPY NUMBER</button></div>
-        <a class="whatsapp" href="https://wa.me/2349066760078" target="_blank" rel="noopener">OPEN WHATSAPP • 09066760078</a>
+
+        <h3>Payment • OPay</h3>
+        <p>Pay to:</p>
+        <div class="pay">
+          <div>
+            <strong>OPAY</strong>
+            <div class="acct">9066760078</div>
+            <div class="owner">CHRISTANA Godwin okon</div>
+          </div>
+          <div class="pay-actions">
+            <button id="copyPay">COPY NUMBER</button>
+            <a id="openOwnerChat" class="whatsapp" target="_blank" rel="noopener">Open owner WhatsApp</a>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- Ban Checker -->
     <section id="checker" class="page">
       <div class="panel">
         <div class="eyebrow">◆ PUBLIC LOOKUP</div>
         <h2>Ban <em>status checker</em></h2>
-        <div class="searchrow"><input id="banSearch" placeholder="Enter Ban ID, User ID or phone"><button id="checkBan" class="gold">SEARCH</button></div>
+        <div class="searchrow">
+          <input id="banSearch" placeholder="Enter Ban ID, User ID or phone" />
+          <button id="checkBan" class="gold">SEARCH</button>
+        </div>
         <div id="banResult" class="result"></div>
-        <p class="muted">This GitHub-only build uses local demo records. Connect the supplied API/database before treating it as a production moderation system.</p>
+        <p class="muted">This demo uses local records. Connect to your production database for real checks.</p>
+
+        <hr>
+        <h3>Quick actions</h3>
+        <div class="row">
+          <button id="simulateBan" class="outline">Simulate Ban</button>
+          <button id="simulateUnban" class="outline">Simulate Unban</button>
+        </div>
       </div>
     </section>
 
+    <!-- Bugs -->
     <section id="bugs" class="page">
       <div class="panel">
         <div class="eyebrow">◆ BUG CENTER</div>
@@ -73,19 +106,29 @@
         <form id="bugForm" class="formgrid">
           <label>Name / username<input name="name" required></label>
           <label>Contact<input name="contact" required></label>
-          <label>Category<select name="category"><option>Login</option><option>Access Key</option><option>Payment</option><option>Ban</option><option>Dashboard</option><option>UI</option><option>Performance</option><option>Other</option></select></label>
-          <label>Severity<select name="severity"><option>LOW</option><option>MEDIUM</option><option>HIGH</option><option>CRITICAL</option></select></label>
+          <label>Category
+            <select name="category">
+              <option>Login</option><option>Access Key</option><option>Payment</option><option>Ban</option><option>Dashboard</option><option>UI</option>
+            </select>
+          </label>
+          <label>Severity
+            <select name="severity"><option>LOW</option><option>MEDIUM</option><option>HIGH</option><option>CRITICAL</option></select>
+          </label>
           <label class="full">Page affected<input name="page" placeholder="e.g. Access page"></label>
           <label class="full">Description<textarea name="description" required></textarea></label>
           <label class="full">Steps to reproduce<textarea name="steps"></textarea></label>
           <button class="gold full" type="submit">CREATE BUG REPORT</button>
         </form>
         <div id="bugResult" class="result"></div>
-        <div class="lookup"><input id="bugId" placeholder="ZBUG-XXXXXX"><button id="lookupBug">CHECK REPORT</button></div>
+
+        <div class="lookup">
+          <input id="bugId" placeholder="ZBUG-XXXXXX"><button id="lookupBug">CHECK REPORT</button>
+        </div>
         <div id="bugLookupResult" class="result"></div>
       </div>
     </section>
 
+    <!-- Appeals -->
     <section id="appeals" class="page">
       <div class="panel">
         <div class="eyebrow">◆ APPEAL CENTER</div>
@@ -101,33 +144,56 @@
       </div>
     </section>
 
+    <!-- Dashboard (user after login) -->
+    <section id="dashboard" class="page">
+      <div class="panel">
+        <div class="eyebrow">◆ DASHBOARD</div>
+        <h2>Your Access</h2>
+        <div id="userKeyInfo" class="card"></div>
+        <div id="countdown" class="countdown"></div>
+        <div class="actions">
+          <button id="logoutBtn" class="outline">LOG OUT</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admin -->
     <section id="admin" class="page">
       <div class="panel">
         <div class="eyebrow">◆ PRIVATE CONSOLE</div>
         <h2>ZCORP <em>Admin</em></h2>
+
         <div id="adminGate">
           <label>ADMIN PIN<input id="pinInput" type="password" placeholder="Enter admin PIN"></label>
           <button id="pinBtn" class="gold wide">UNLOCK CONSOLE</button>
           <div id="pinResult" class="result"></div>
         </div>
+
         <div id="adminConsole" class="hidden">
           <div class="stats">
             <div><b id="bugCount">0</b><span>Bug Reports</span></div>
             <div><b id="appealCount">0</b><span>Appeals</span></div>
             <div><b id="keyCount">0</b><span>Issued Keys</span></div>
           </div>
-          <h3>Local key generator</h3>
-          <p class="warning">For GitHub static hosting only. This is NOT secure enough for real paid access control. Production key generation must move to a backend.</p>
-          <button id="generateKey" class="gold">GENERATE KEY</button>
+
+          <h3>Issued / Available Codes</h3>
           <div id="generatedKey" class="result"></div>
-          <h3>Recent reports</h3>
+
+          <h3>Recent bug reports</h3>
           <div id="adminReports"></div>
+
+          <div class="actions" style="margin-top:12px">
+            <button id="generateKey" class="gold">GENERATE KEY (demo)</button>
+            <button id="downloadReport" class="outline">EXPORT BUGS (JSON)</button>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer>© 2026 ZCORP • SECURE • FAST • RELIABLE</footer>
+
+  <!-- Config & Scripts -->
   <script src="Pins.js"></script>
   <script src="Main.js"></script>
 </body>
