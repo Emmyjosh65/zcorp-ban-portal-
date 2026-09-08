@@ -1,200 +1,108 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <title>ZCORP • Ban Portal</title>
-  <link rel="stylesheet" href="Style.css">
-</head>
-<body>
-  <div class="ambient" aria-hidden="true"></div>
+/* Neon‑Gold • World-class UI for ZCORP Ban Portal
+   Clean, modern, responsive and polished */
+:root{
+  --bg:#070707;
+  --card:#0f0f12;
+  --muted:#cbbf9a;
+  --text:#f7f3ea;
+  --gold-1:#ffd166;
+  --gold-2:#ffb84d;
+  --glass: rgba(255,255,255,0.03);
+  --accent: linear-gradient(90deg,var(--gold-1),var(--gold-2));
+}
 
-  <header class="topbar">
-    <a class="brand" href="#home" data-page="home"><span>⚡</span><div class="title"><b>ZCORP</b><small>BAN PORTAL</small></div></a>
-    <nav class="nav">
-      <button data-page="home">Home</button>
-      <button data-page="access">Access</button>
-      <button data-page="checker">Ban Check</button>
-      <button data-page="bugs">Bug Center</button>
-      <button data-page="appeals">Appeals</button>
-    </nav>
-    <div class="right">
-      <button id="adminBtn" class="outline">Admin</button>
-    </div>
-  </header>
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:
+    radial-gradient(800px 300px at 10% 8%, rgba(255,215,0,0.035), transparent),
+    radial-gradient(700px 250px at 95% 92%, rgba(255,215,0,0.02), transparent),
+    var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
 
-  <main>
-    <!-- Home -->
-    <section id="home" class="page active">
-      <div class="hero">
-        <div class="eyebrow">◆ SECURE MODERATION TERMINAL</div>
-        <h1>ZCORP<br><em>BAN PORTAL</em></h1>
-        <p class="intro">World-class UI for moderation, access control, ban checks, bug reporting and appeals — now with neon‑gold styling and easy reseller workflow.</p>
-        <div class="actions">
-          <button id="openPay" class="cta gold">Get Access • Pay</button>
-          <button data-page="access" class="cta outline">Verify Access Key</button>
-          <button data-page="checker" class="cta">Check Ban</button>
-        </div>
-      </div>
+.ambient{position:fixed;inset:0;pointer-events:none;mix-blend-mode:screen;filter:blur(18px)}
 
-      <div class="features">
-        <article><span>01</span><h3>ACCESS CONTROL</h3><p>Pre-generated keys, quick activation and expiry timers for every plan.</p></article>
-        <article><span>02</span><h3>MODERATION</h3><p>Ban checks and unban flows with receipt-driven activation.</p></article>
-        <article><span>03</span><h3>BUG CENTER</h3><p>Report and track bugs locally in the demo dashboard.</p></article>
-      </div>
-    </section>
+.topbar{
+  display:flex;gap:16px;align-items:center;justify-content:space-between;padding:14px 20px;
+  background:linear-gradient(180deg, rgba(255,215,0,0.02), transparent);
+  border-bottom:1px solid rgba(255,215,0,0.03);
+  position:sticky;top:0;backdrop-filter: blur(6px);z-index:5;
+}
+.brand{display:flex;align-items:center;gap:12px;color:var(--text);text-decoration:none}
+.brand span{font-size:20px;filter:drop-shadow(0 0 8px rgba(255,215,0,0.12))}
+.brand .title b{display:block;line-height:1}
+.brand .title small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
 
-    <!-- Access -->
-    <section id="access" class="page">
-      <div class="panel narrow">
-        <div class="eyebrow">◆ ACCESS TERMINAL</div>
-        <h2>Verify your <em>access key</em></h2>
-        <p>Enter the key supplied after payment verification.</p>
-        <label class="field">ACCESS KEY
-          <input id="keyInput" autocomplete="off" placeholder="ZCORP-XXXX-XXXX-XXXX" />
-        </label>
-        <div class="row">
-          <button id="loginBtn" class="gold wide">VERIFY & ENTER</button>
-          <button id="showPayFromAccess" class="outline">Need access? Pay</button>
-        </div>
-        <div id="loginResult" class="result"></div>
+.nav button{background:transparent;border:0;color:var(--muted);padding:8px 12px;border-radius:10px;cursor:pointer;font-weight:600}
+.nav button:hover{color:var(--gold-1);transform:translateY(-2px)}
+.right .outline{border:1px solid rgba(255,215,0,0.06);padding:8px 12px;border-radius:10px;background:transparent;color:var(--gold-1)}
 
-        <hr>
+main{max-width:1100px;margin:30px auto;padding:16px}
+.page{display:none}
+.page.active{display:block;animation:fadeIn .36s ease-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-        <h3>Payment • OPay</h3>
-        <p>Pay to:</p>
-        <div class="pay">
-          <div>
-            <strong>OPAY</strong>
-            <div class="acct">9066760078</div>
-            <div class="owner">CHRISTANA Godwin okon</div>
-          </div>
-          <div class="pay-actions">
-            <button id="copyPay">COPY NUMBER</button>
-            <a id="openOwnerChat" class="whatsapp" target="_blank" rel="noopener">Open owner WhatsApp</a>
-          </div>
-        </div>
-      </div>
-    </section>
+.hero{display:flex;flex-direction:column;gap:8px;padding:24px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border-radius:14px;border:1px solid rgba(255,215,0,0.02)}
+.hero .eyebrow{color:var(--muted);font-weight:700;letter-spacing:0.6px}
+.hero h1{font-size:42px;margin:6px 0;line-height:1.02}
+.hero .intro{max-width:72ch;color:rgba(247,243,234,0.9)}
 
-    <!-- Ban Checker -->
-    <section id="checker" class="page">
-      <div class="panel">
-        <div class="eyebrow">◆ PUBLIC LOOKUP</div>
-        <h2>Ban <em>status checker</em></h2>
-        <div class="searchrow">
-          <input id="banSearch" placeholder="Enter Ban ID, User ID or phone" />
-          <button id="checkBan" class="gold">SEARCH</button>
-        </div>
-        <div id="banResult" class="result"></div>
-        <p class="muted">This demo uses local records. Connect to your production database for real checks.</p>
+.actions{display:flex;gap:12px;margin-top:12px}
+.cta{padding:12px 18px;border-radius:12px;border:0;font-weight:700;cursor:pointer}
+.gold{background:var(--accent);color:#061017;box-shadow:0 12px 40px rgba(255,181,0,0.06)}
+.outline{background:transparent;border:1px solid rgba(255,215,0,0.05);color:var(--muted)}
 
-        <hr>
-        <h3>Quick actions</h3>
-        <div class="row">
-          <button id="simulateBan" class="outline">Simulate Ban</button>
-          <button id="simulateUnban" class="outline">Simulate Unban</button>
-        </div>
-      </div>
-    </section>
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.features article{padding:16px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);border:1px solid rgba(255,215,0,0.02)}
 
-    <!-- Bugs -->
-    <section id="bugs" class="page">
-      <div class="panel">
-        <div class="eyebrow">◆ BUG CENTER</div>
-        <h2>Report a <em>bug</em></h2>
-        <form id="bugForm" class="formgrid">
-          <label>Name / username<input name="name" required></label>
-          <label>Contact<input name="contact" required></label>
-          <label>Category
-            <select name="category">
-              <option>Login</option><option>Access Key</option><option>Payment</option><option>Ban</option><option>Dashboard</option><option>UI</option>
-            </select>
-          </label>
-          <label>Severity
-            <select name="severity"><option>LOW</option><option>MEDIUM</option><option>HIGH</option><option>CRITICAL</option></select>
-          </label>
-          <label class="full">Page affected<input name="page" placeholder="e.g. Access page"></label>
-          <label class="full">Description<textarea name="description" required></textarea></label>
-          <label class="full">Steps to reproduce<textarea name="steps"></textarea></label>
-          <button class="gold full" type="submit">CREATE BUG REPORT</button>
-        </form>
-        <div id="bugResult" class="result"></div>
+.panel{background:linear-gradient(180deg,var(--card), rgba(255,215,0,0.01));padding:20px;border-radius:14px;border:1px solid rgba(255,215,0,0.03);box-shadow:0 20px 60px rgba(0,0,0,0.55)}
+.narrow{max-width:640px;margin:0 auto}
 
-        <div class="lookup">
-          <input id="bugId" placeholder="ZBUG-XXXXXX"><button id="lookupBug">CHECK REPORT</button>
-        </div>
-        <div id="bugLookupResult" class="result"></div>
-      </div>
-    </section>
+label.field{display:block;margin-top:12px;color:var(--muted);font-weight:600}
+input,select,textarea{width:100%;padding:10px;margin-top:6px;border-radius:10px;border:1px solid rgba(255,215,0,0.03);background:var(--glass);color:var(--text)}
+.row{display:flex;gap:8px;align-items:center;margin-top:12px}
+.wide{flex:1}
 
-    <!-- Appeals -->
-    <section id="appeals" class="page">
-      <div class="panel">
-        <div class="eyebrow">◆ APPEAL CENTER</div>
-        <h2>Appeal a <em>ban</em></h2>
-        <form id="appealForm" class="formgrid">
-          <label>Ban ID<input name="banId" required></label>
-          <label>Contact<input name="contact" required></label>
-          <label class="full">Reason<textarea name="reason" required></textarea></label>
-          <label class="full">Additional explanation<textarea name="details"></textarea></label>
-          <button class="gold full" type="submit">SUBMIT APPEAL</button>
-        </form>
-        <div id="appealResult" class="result"></div>
-      </div>
-    </section>
+.result{margin-top:12px}
+.result .error{color:#ff7b7b;background:rgba(255,107,107,0.04);padding:10px;border-radius:10px}
+.result .success{color:#a8ffdd;background:rgba(45,224,166,0.04);padding:10px;border-radius:10px}
+.loading{color:var(--gold-1);padding:12px;background:rgba(255,215,0,0.035);border-radius:10px;animation:pulse 1.6s infinite}
+@keyframes pulse{0%{opacity:1}50%{opacity:0.7}100%{opacity:1}}
 
-    <!-- Dashboard (user after login) -->
-    <section id="dashboard" class="page">
-      <div class="panel">
-        <div class="eyebrow">◆ DASHBOARD</div>
-        <h2>Your Access</h2>
-        <div id="userKeyInfo" class="card"></div>
-        <div id="countdown" class="countdown"></div>
-        <div class="actions">
-          <button id="logoutBtn" class="outline">LOG OUT</button>
-        </div>
-      </div>
-    </section>
+.pay{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px}
+.pay .acct{font-size:18px;font-weight:800;color:var(--text)}
+.pay .owner{font-size:13px;color:var(--muted)}
+.pay-actions{display:flex;gap:8px}
+.pay-actions button,a{padding:8px 10px;border-radius:10px;border:1px solid rgba(255,215,0,0.03);background:transparent;color:var(--gold-1);text-decoration:none}
 
-    <!-- Admin -->
-    <section id="admin" class="page">
-      <div class="panel">
-        <div class="eyebrow">◆ PRIVATE CONSOLE</div>
-        <h2>ZCORP <em>Admin</em></h2>
+.searchrow{display:flex;gap:10px}
+.searchrow input{flex:1;padding:12px;border-radius:10px}
+.searchrow button{padding:12px;border-radius:10px}
 
-        <div id="adminGate">
-          <label>ADMIN PIN<input id="pinInput" type="password" placeholder="Enter admin PIN"></label>
-          <button id="pinBtn" class="gold wide">UNLOCK CONSOLE</button>
-          <div id="pinResult" class="result"></div>
-        </div>
+.formgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.formgrid .full{grid-column:1/-1}
+.full{width:100%}
 
-        <div id="adminConsole" class="hidden">
-          <div class="stats">
-            <div><b id="bugCount">0</b><span>Bug Reports</span></div>
-            <div><b id="appealCount">0</b><span>Appeals</span></div>
-            <div><b id="keyCount">0</b><span>Issued Keys</span></div>
-          </div>
+.codes{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.code{padding:8px 10px;border-radius:8px;background:rgba(255,215,0,0.02);border:1px solid rgba(255,215,0,0.03);font-size:13px;display:flex;gap:8px;align-items:center}
+.code.used{opacity:0.45;text-decoration:line-through}
 
-          <h3>Issued / Available Codes</h3>
-          <div id="generatedKey" class="result"></div>
+.stats{display:flex;gap:12px;margin-bottom:12px}
+.stats > div{background:rgba(255,255,255,0.01);padding:12px;border-radius:8px;flex:1;text-align:center}
+.stats b{display:block;font-size:20px}
+.card{padding:12px;border-radius:10px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,215,0,0.02)}
+.countdown{margin-top:12px;font-weight:800;font-size:18px;color:var(--gold-1)}
 
-          <h3>Recent bug reports</h3>
-          <div id="adminReports"></div>
+footer{padding:18px;text-align:center;color:var(--muted);margin-top:28px;border-top:1px solid rgba(255,215,0,0.02)}
 
-          <div class="actions" style="margin-top:12px">
-            <button id="generateKey" class="gold">GENERATE KEY (demo)</button>
-            <button id="downloadReport" class="outline">EXPORT BUGS (JSON)</button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>© 2026 ZCORP • SECURE • FAST • RELIABLE</footer>
-
-  <!-- Config & Scripts -->
-  <script src="Pins.js"></script>
-  <script src="Main.js"></script>
-</body>
-</html>
+@media(max-width:920px){
+  .features{grid-template-columns:1fr}
+  .formgrid{grid-template-columns:1fr}
+  .nav{display:none}
+}
