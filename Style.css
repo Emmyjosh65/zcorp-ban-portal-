@@ -1,67 +1,200 @@
-/* Neon-gold theme tweaks for ZCORP Ban Portal */
-:root{
-  --bg:#070707;
-  --panel:#0f0f0f;
-  --text:#f8f3ea;
-  --muted:#cbbf9a;
-  --gold:#ffd166;
-  --gold-strong:#ffcf40;
-  --neon: rgba(255,215,0,0.12);
-  --accent: linear-gradient(90deg,#ffdf80,#ffd166 60%,#ffb84d);
-  --glass: rgba(255,255,255,0.02);
-  --glass-2: rgba(255,215,0,0.03);
-}
-*{box-sizing:border-box}
-html,body{height:100%}
-body{
-  margin:0;
-  background: radial-gradient(1200px 400px at 10% 10%, rgba(255,215,0,0.03), transparent),
-              radial-gradient(800px 300px at 90% 90%, rgba(255,215,0,0.02), transparent),
-              var(--bg);
-  color:var(--text);
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-}
-.ambient{position:fixed;inset:0;pointer-events:none;mix-blend-mode:screen}
-.topbar{
-  display:flex;align-items:center;justify-content:space-between;padding:14px 20px;
-  backdrop-filter: blur(6px);
-  background: linear-gradient(180deg, rgba(255,215,0,0.02), transparent);
-  border-bottom:1px solid rgba(255,215,0,0.04);
-}
-.brand{display:flex;align-items:center;gap:10px;color:var(--text);text-decoration:none}
-.brand span{font-size:20px;filter: drop-shadow(0 0 6px rgba(255,215,0,0.18))}
-.brand b{letter-spacing:1px}
-nav button{background:transparent;border:0;color:var(--muted);padding:8px 12px;border-radius:8px;cursor:pointer}
-nav button:hover{color:var(--gold);box-shadow:0 6px 24px rgba(255,215,0,0.04),0 0 12px rgba(255,215,0,0.03) inset}
-.gold,button.gold{background:var(--accent);color:#091011;border:0;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;box-shadow:0 6px 28px rgba(255,181,0,0.08)}
-.button-outline{border:1px solid rgba(255,215,0,0.08);background:transparent;color:var(--gold)}
-main{max-width:980px;margin:28px auto;padding:12px}
-.page{display:none}
-.page.active{display:block}
-.panel{background:linear-gradient(180deg,var(--panel),rgba(255,215,0,0.01));padding:22px;border-radius:14px;border:1px solid rgba(255,215,0,0.04);box-shadow:0 8px 40px rgba(0,0,0,0.6)}
-.hero h1{font-size:38px;margin:8px 0;line-height:1.05}
-.eyebrow{color:var(--muted);font-weight:600;margin-bottom:8px}
-.actions{display:flex;gap:12px;margin-top:14px}
-.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
-.cards article{padding:14px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);border-radius:10px;border:1px solid rgba(255,215,0,0.03)}
-.panel.narrow{max-width:520px;margin:0 auto}
-label{display:block;margin:10px 0;font-size:14px;color:var(--muted)}
-input,select,textarea{width:100%;padding:10px;background:var(--glass);border:1px solid rgba(255,215,0,0.03);color:var(--text);border-radius:8px}
-.result .error{color:#ff6b6b;background:rgba(255,107,107,0.05);padding:10px;border-radius:8px}
-.result .success{color:#2de0a6;background:rgba(45,224,166,0.05);padding:10px;border-radius:8px}
-.loading{color:var(--gold);padding:12px;background:rgba(255,215,0,0.03);border-radius:8px;animation:blink 1.8s linear infinite}
-@keyframes blink{50%{opacity:0.7}}
-.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(90deg,rgba(0,0,0,0.6),rgba(0,0,0,0.5))}
-.modal-body{width:420px;padding:20px;border-radius:12px;border:1px solid rgba(255,215,0,0.06);box-shadow:0 30px 80px rgba(0,0,0,0.7);background:linear-gradient(180deg,rgba(255,255,255,0.01),rgba(255,215,0,0.01))}
-.modal-body h3{margin-top:0;color:var(--gold-strong)}
-.plans{display:flex;flex-direction:column;gap:8px;margin:12px 0}
-.plan{background:transparent;border:1px dashed rgba(255,215,0,0.06);padding:10px;border-radius:8px;color:var(--text);cursor:pointer}
-.plan.selected{background:rgba(255,215,0,0.06);border-style:solid}
-.acct{margin:12px 0;color:var(--muted);font-weight:600}
-.footer{padding:18px;text-align:center;color:var(--muted);border-top:1px solid rgba(255,215,0,0.03);margin-top:30px}
-.codes{display:flex;flex-wrap:wrap;gap:8px}
-.code{padding:8px 10px;border-radius:8px;background:rgba(255,215,0,0.02);border:1px solid rgba(255,215,0,0.03);font-size:13px}
-.code.used{opacity:0.5;text-decoration:line-through}
-@media(max-width:720px){.cards{grid-template-columns:1fr}.hero h1{font-size:28px}}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>ZCORP • Ban Portal</title>
+  <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#home" data-page="home"><span>⚡</span><div class="title"><b>ZCORP</b><small>BAN PORTAL</small></div></a>
+    <nav class="nav">
+      <button data-page="home">Home</button>
+      <button data-page="access">Access</button>
+      <button data-page="checker">Ban Check</button>
+      <button data-page="bugs">Bug Center</button>
+      <button data-page="appeals">Appeals</button>
+    </nav>
+    <div class="right">
+      <button id="adminBtn" class="outline">Admin</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Home -->
+    <section id="home" class="page active">
+      <div class="hero">
+        <div class="eyebrow">◆ SECURE MODERATION TERMINAL</div>
+        <h1>ZCORP<br><em>BAN PORTAL</em></h1>
+        <p class="intro">World-class UI for moderation, access control, ban checks, bug reporting and appeals — now with neon‑gold styling and easy reseller workflow.</p>
+        <div class="actions">
+          <button id="openPay" class="cta gold">Get Access • Pay</button>
+          <button data-page="access" class="cta outline">Verify Access Key</button>
+          <button data-page="checker" class="cta">Check Ban</button>
+        </div>
+      </div>
+
+      <div class="features">
+        <article><span>01</span><h3>ACCESS CONTROL</h3><p>Pre-generated keys, quick activation and expiry timers for every plan.</p></article>
+        <article><span>02</span><h3>MODERATION</h3><p>Ban checks and unban flows with receipt-driven activation.</p></article>
+        <article><span>03</span><h3>BUG CENTER</h3><p>Report and track bugs locally in the demo dashboard.</p></article>
+      </div>
+    </section>
+
+    <!-- Access -->
+    <section id="access" class="page">
+      <div class="panel narrow">
+        <div class="eyebrow">◆ ACCESS TERMINAL</div>
+        <h2>Verify your <em>access key</em></h2>
+        <p>Enter the key supplied after payment verification.</p>
+        <label class="field">ACCESS KEY
+          <input id="keyInput" autocomplete="off" placeholder="ZCORP-XXXX-XXXX-XXXX" />
+        </label>
+        <div class="row">
+          <button id="loginBtn" class="gold wide">VERIFY & ENTER</button>
+          <button id="showPayFromAccess" class="outline">Need access? Pay</button>
+        </div>
+        <div id="loginResult" class="result"></div>
+
+        <hr>
+
+        <h3>Payment • OPay</h3>
+        <p>Pay to:</p>
+        <div class="pay">
+          <div>
+            <strong>OPAY</strong>
+            <div class="acct">9066760078</div>
+            <div class="owner">CHRISTANA Godwin okon</div>
+          </div>
+          <div class="pay-actions">
+            <button id="copyPay">COPY NUMBER</button>
+            <a id="openOwnerChat" class="whatsapp" target="_blank" rel="noopener">Open owner WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ban Checker -->
+    <section id="checker" class="page">
+      <div class="panel">
+        <div class="eyebrow">◆ PUBLIC LOOKUP</div>
+        <h2>Ban <em>status checker</em></h2>
+        <div class="searchrow">
+          <input id="banSearch" placeholder="Enter Ban ID, User ID or phone" />
+          <button id="checkBan" class="gold">SEARCH</button>
+        </div>
+        <div id="banResult" class="result"></div>
+        <p class="muted">This demo uses local records. Connect to your production database for real checks.</p>
+
+        <hr>
+        <h3>Quick actions</h3>
+        <div class="row">
+          <button id="simulateBan" class="outline">Simulate Ban</button>
+          <button id="simulateUnban" class="outline">Simulate Unban</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bugs -->
+    <section id="bugs" class="page">
+      <div class="panel">
+        <div class="eyebrow">◆ BUG CENTER</div>
+        <h2>Report a <em>bug</em></h2>
+        <form id="bugForm" class="formgrid">
+          <label>Name / username<input name="name" required></label>
+          <label>Contact<input name="contact" required></label>
+          <label>Category
+            <select name="category">
+              <option>Login</option><option>Access Key</option><option>Payment</option><option>Ban</option><option>Dashboard</option><option>UI</option>
+            </select>
+          </label>
+          <label>Severity
+            <select name="severity"><option>LOW</option><option>MEDIUM</option><option>HIGH</option><option>CRITICAL</option></select>
+          </label>
+          <label class="full">Page affected<input name="page" placeholder="e.g. Access page"></label>
+          <label class="full">Description<textarea name="description" required></textarea></label>
+          <label class="full">Steps to reproduce<textarea name="steps"></textarea></label>
+          <button class="gold full" type="submit">CREATE BUG REPORT</button>
+        </form>
+        <div id="bugResult" class="result"></div>
+
+        <div class="lookup">
+          <input id="bugId" placeholder="ZBUG-XXXXXX"><button id="lookupBug">CHECK REPORT</button>
+        </div>
+        <div id="bugLookupResult" class="result"></div>
+      </div>
+    </section>
+
+    <!-- Appeals -->
+    <section id="appeals" class="page">
+      <div class="panel">
+        <div class="eyebrow">◆ APPEAL CENTER</div>
+        <h2>Appeal a <em>ban</em></h2>
+        <form id="appealForm" class="formgrid">
+          <label>Ban ID<input name="banId" required></label>
+          <label>Contact<input name="contact" required></label>
+          <label class="full">Reason<textarea name="reason" required></textarea></label>
+          <label class="full">Additional explanation<textarea name="details"></textarea></label>
+          <button class="gold full" type="submit">SUBMIT APPEAL</button>
+        </form>
+        <div id="appealResult" class="result"></div>
+      </div>
+    </section>
+
+    <!-- Dashboard (user after login) -->
+    <section id="dashboard" class="page">
+      <div class="panel">
+        <div class="eyebrow">◆ DASHBOARD</div>
+        <h2>Your Access</h2>
+        <div id="userKeyInfo" class="card"></div>
+        <div id="countdown" class="countdown"></div>
+        <div class="actions">
+          <button id="logoutBtn" class="outline">LOG OUT</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admin -->
+    <section id="admin" class="page">
+      <div class="panel">
+        <div class="eyebrow">◆ PRIVATE CONSOLE</div>
+        <h2>ZCORP <em>Admin</em></h2>
+
+        <div id="adminGate">
+          <label>ADMIN PIN<input id="pinInput" type="password" placeholder="Enter admin PIN"></label>
+          <button id="pinBtn" class="gold wide">UNLOCK CONSOLE</button>
+          <div id="pinResult" class="result"></div>
+        </div>
+
+        <div id="adminConsole" class="hidden">
+          <div class="stats">
+            <div><b id="bugCount">0</b><span>Bug Reports</span></div>
+            <div><b id="appealCount">0</b><span>Appeals</span></div>
+            <div><b id="keyCount">0</b><span>Issued Keys</span></div>
+          </div>
+
+          <h3>Issued / Available Codes</h3>
+          <div id="generatedKey" class="result"></div>
+
+          <h3>Recent bug reports</h3>
+          <div id="adminReports"></div>
+
+          <div class="actions" style="margin-top:12px">
+            <button id="generateKey" class="gold">GENERATE KEY (demo)</button>
+            <button id="downloadReport" class="outline">EXPORT BUGS (JSON)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 ZCORP • SECURE • FAST • RELIABLE</footer>
+
+  <!-- Config & Scripts -->
+  <script src="Pins.js"></script>
+  <script src="Main.js"></script>
+</body>
+</html>
